@@ -9,7 +9,7 @@ import com.codejam.idols.entity.PersonalInformation;
 @Repository
 public interface PersonalInfoRepository extends JpaRepository<PersonalInformation, Integer> {
 
-	@Query("SELECT p.id, p.idolName FROM PersonalInformation AS p ORDER BY RAND()")
+	@Query("SELECT p.id, p.idolName,p.idolStatus,p.address FROM PersonalInformation AS p ORDER BY RAND()")
 	String fetchRandomIdolPersonalInformation();
 
 }
