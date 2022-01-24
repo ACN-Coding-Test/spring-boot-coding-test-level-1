@@ -1,0 +1,41 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Personal Information</title>
+</head>
+<div class="container">
+	<div class="card">
+		<div class="card-header bg-primary text-white text-center">
+			<h3>PERSONAL INFORMATION DATA</h3>
+		</div>
+		<div class="card-body">
+			<table class="table table-hover">
+				<tr class="bg-info text-white">
+					<th>Id</th>
+					<th>Real-Name</th>
+					<th>Idol-Name</th>
+					<th>Address</th>
+					<th>Idol-Status</th>
+				</tr>
+				<tr th:each="ob:${info}">
+					<td th:text="${ob.id}"></td>
+					<td th:text="${ob.realName}"></td>
+					<td th:text="${ob.idolName}"></td>
+					<td th:text="${ob.address}"></td>
+					<td th:text="${ob.idolStatus}"></td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="card-footer bg-success text-white" th:if="${message!=null}">
+			<span th:text="${message}"></span>
+		</div>
+
+	</div> <!-- card end -->
+</div>
+<!-- container end -->
+</body>
+
+</html>
