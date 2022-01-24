@@ -53,4 +53,20 @@ public class PersonalInformationController {
 		LOG.info("ABOUT TO LEAVE SAVE PERSONAL INFORMATION METHOD");
 		return "PersonalInformationPage";
 	}
+
+	@GetMapping("/all")
+	public String getAllPersonalInfos(Model model) {
+		LOG.info("ENTER INTO SAVE PERSONAL INFORMATION METHOD");
+		try {
+			List<PersonalInformation> info = personalInfoService.getAllUsersPersonalInformations();
+			model.addAttribute("info", info);
+			LOG.debug("PERSONAL INFORMATION DATA IS SAVE WITH ID {}", info);
+		} catch (Exception e) {
+			model.addAttribute("message",
+					"COULD NOT EXECUTE THE DUPLICATE FORM DATA OR  PAGE RELOAD DATA OR EMPTY FIELD FORM...!");
+			LOG.error("UNABLE TO PERFORM OPERATION OF GET ALL PERSONAL INFORMATION DATA {}", e.getMessage());
+		}
+		LOG.info("ABOUT TO LEAVE GETALL PERSONAL INFORMATION METHOD");
+		return "PersonalInformationData";
+	}
 }
