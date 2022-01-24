@@ -1,0 +1,76 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>Personal Information</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-center text-light">
+				<h2></h2>
+				<h2>Idol-Personal Information</h2>
+			</div>
+			<div class="card-body">
+				<form id="personalInformation" th:action="@{/pi/save}" method="POST" name="personalInformation"
+					class="from-control text-center">
+					<!--row#2-->
+					<div class="row">
+						<div class="col-3">
+							<b><label for="realName">Real-Name</label></b>
+						</div>
+						<div class="col-4">
+							<input type="text" name="realName" id="realName" class="form-control">
+						</div>
+					</div>
+					<br>
+					<!--row#2-->
+					<div class="row">
+						<div class="col-3">
+							<b><label for="idolName">Idol-Name</label></b>
+						</div>
+						<div class="col-4">
+							<input type="text" name="idolName" id="idolName" class="form-control">
+						</div>
+					</div>
+					<br>
+					<!--row#2-->
+					<div class="row">
+						<div class="col-3">
+							<b><label for="address">Address</label></b>
+						</div>
+						<div class="col-4">
+							<input type="text" name="address" id="address" class="form-control">
+						</div>
+					</div>
+					<br>
+
+					<!--row#2-->
+					<div class="row">
+						<div class="col-3">
+							<b><label for="idolStatus">Iodl-Status</label></b>
+						</div>
+						<div class="col-4">
+							<input type="text" name="idolStatus" id="idolStatus" class="form-control">
+						</div>
+					</div>
+					<br>
+					<h3 class="text-center">
+						<button type="submit" class="btn btn-success">
+							Register<i class="fa fa-plus-circle" aria-hidden="true"></i>
+						</button>
+					</h3>
+					<!--form end-->
+				</form>
+				<!--card body-->
+			</div>
+		</div>
+		<div class="card-footer bg-dark text-center text-light" th:if="${message!=null}" th:text="${message}">
+			<span></span>
+		</div>
+		<!--card-->
+	</div>
+	<!--container-->
+</body>
