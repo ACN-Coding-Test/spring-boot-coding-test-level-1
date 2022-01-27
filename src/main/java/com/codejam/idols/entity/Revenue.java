@@ -15,7 +15,7 @@ import lombok.Data;
 public class Revenue {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
 	@Column(name = "monthly_rate", length = 50)
