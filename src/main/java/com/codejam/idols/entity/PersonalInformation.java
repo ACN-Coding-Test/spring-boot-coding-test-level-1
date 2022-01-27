@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import io.lettuce.core.dynamic.annotation.CommandNaming.Strategy;
 import lombok.Data;
 
 @Entity
@@ -16,7 +15,7 @@ import lombok.Data;
 public class PersonalInformation {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	@Column(name = "real_name", length = 50)
 	private String realName;
