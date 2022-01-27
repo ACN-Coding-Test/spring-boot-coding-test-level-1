@@ -138,14 +138,14 @@ public class PersonalInformationRestController {
 		return response;
 	}
 
-	@GetMapping("/todo")
-	public ResponseEntity<?> getTodoData() {
+	@PostMapping("/todo/{id}")
+	public ResponseEntity<?> getTodoData(@PathVariable Integer id) {
 		log.info("ENTER INTO TODO METHOD");
 		ResponseEntity<?> response = null;
 		try {
 			RestTemplate rest = new RestTemplate();
-			String toDo = rest.getForObject(url, String.class);
-			response = new ResponseEntity<String>(toDo, HttpStatus.OK);
+			Todo toDo = rest.getForObject(url.concat("/".concat(id.toString())), Todo.class);
+			response = new ResponseEntity<Todo>(toDo, HttpStatus.OK);
 			log.debug("JSON DATA FEATECHED FROM EXTERNAL URL {}", toDo);
 		} catch (Exception e) {
 			response = new ResponseEntity<>("UNABLE TO PERFORM FETCH JSON DATA FORM EXTERNAL URL",
