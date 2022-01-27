@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.codejam.idols.entity.PersonalInformation;
+import com.codejam.idols.entity.Todo;
 import com.codejam.idols.exceptions.PersonalInformationNotFoundException;
 import com.codejam.idols.service.PersonalInfoService;
 
@@ -138,7 +139,7 @@ public class PersonalInformationRestController {
 		return response;
 	}
 
-	@PostMapping("/todo/{id}")
+	@GetMapping("/todo/{id}")
 	public ResponseEntity<?> getTodoData(@PathVariable Integer id) {
 		log.info("ENTER INTO TODO METHOD");
 		ResponseEntity<?> response = null;
