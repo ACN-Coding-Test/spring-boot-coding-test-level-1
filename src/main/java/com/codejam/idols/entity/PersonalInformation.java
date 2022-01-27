@@ -16,8 +16,8 @@ import lombok.Data;
 public class PersonalInformation {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	@Column(name = "real_name", length = 50)
 	private String realName;
 	@Column(name = "idol_name", length = 60)

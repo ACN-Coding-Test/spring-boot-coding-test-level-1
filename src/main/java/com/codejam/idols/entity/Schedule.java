@@ -16,7 +16,7 @@ public class Schedule {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	@Column(length = 50)
 	private String venu;

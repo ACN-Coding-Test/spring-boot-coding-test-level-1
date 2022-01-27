@@ -5,10 +5,13 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.codejam.idols.entity.PersonalInformation;
@@ -16,14 +19,22 @@ import com.codejam.idols.repositpry.PersonalInfoRepository;
 import com.codejam.idols.service.PersonalInfoService;
 import com.codejam.idols.serviceImpl.PersonalInfoServiceImpl;
 
-@SpringBootTest
+@SpringBootTest(classes = IdolsInformationApplication.class)
 public class IdolsInformationApplicationTests {
+
+	/*
+	 * @Junit5 with mockito
+	 * 
+	 */
 
 	@Mock
 	private PersonalInfoRepository personalInfoRepository;
 
 	@InjectMocks
 	private PersonalInfoService personalInfoService = new PersonalInfoServiceImpl();
+
+	@Autowired
+	private PersonalInfoRepository personalInfoRepo;
 
 	@Test
 	public void test_savePersonalInfo() {
@@ -65,6 +76,31 @@ public class IdolsInformationApplicationTests {
 		String info = personalInfoService.fetchRandomIdolPersonalInformation();
 		assertThat(info).isNotNull();
 
+	}
+
+	/*
+	 * @Junit4 
+	 * 
+	 */
+
+	@Test
+	public void randomPersonalInfoTest() {
+		PersonalInformation personalInformation = null;
+		Optional<PersonalInformation> info = personalInfoRepo.findById(1);
+		if (info.isPresent()) {
+			personalInformation = info.get();
+		}
+		Assertions.assertEquals("remy", personalInformation.getIdolName());
+	}
+
+	@Test
+	public void IdolStatusTest() {
+		Optional<PersonalInformation> personalInformation = personalInfoRepo.findById(1);
+		PersonalInformation info = null;
+		if (personalInformation.isPresent()) {
+			info = personalInformation.get();
+		}
+		Assertions.assertEquals("ACTIVE", info.getIdolStatus());
 	}
 
 }
