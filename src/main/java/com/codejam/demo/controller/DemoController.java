@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codejam.demo.model.PersonalInfo;
+import com.codejam.demo.model.Revenue;
 import com.codejam.demo.service.DemoService;
 
 @RestController
@@ -51,5 +52,41 @@ public class DemoController {
 	@DeleteMapping("/personalinfo/{id}")
 	private void deletePersonalInfo(@PathVariable("id") int id) {
 		demoService.delete(id);
+	}
+	
+	
+	@PostMapping("/revenue")
+	private int saveRevenue(@RequestBody Revenue revenue) {
+		demoService.saveOrUpdate(revenue);
+		return revenue.getId();
+	}
+
+	@GetMapping("/revenue/{id}")
+	private Revenue getRevenue(@PathVariable("id") int id) {
+		return demoService.getRevenueById(id);
+
+	}
+
+	@DeleteMapping("/revenue/{id}")
+	private void deleteRevenue(@PathVariable("id") int id) {
+		demoService.deleteRevenue(id);
+	}
+	
+	
+	@PostMapping("/schedule")
+	private int saveSchedule(@RequestBody Revenue schedule) {
+		demoService.saveOrUpdate(schedule);
+		return schedule.getId();
+	}
+
+	@GetMapping("/schedule/{id}")
+	private Revenue getSchedule(@PathVariable("id") int id) {
+		return demoService.getRevenueById(id);
+
+	}
+
+	@DeleteMapping("/schedule/{id}")
+	private void deleteSchedule(@PathVariable("id") int id) {
+		demoService.deleteSchedule(id);
 	}
 }
