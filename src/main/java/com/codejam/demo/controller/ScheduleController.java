@@ -1,38 +1,22 @@
 package com.codejam.demo.controller;
 
-import com.codejam.demo.dto.ScheduleDto;
-import com.codejam.demo.enums.RecordStatus;
-import com.codejam.demo.exception.ResourceNotFoundException;
 import com.codejam.demo.model.Schedule;
 import com.codejam.demo.repository.ScheduleRepository;
 import com.codejam.demo.service.ScheduleService;
-import com.codejam.demo.utils.CommonDataHelper;
-import com.codejam.demo.utils.PaginatedResponse;
-import com.codejam.demo.validator.ScheduleValidator;
 import lombok.RequiredArgsConstructor;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import static com.codejam.demo.constants.MessageConstants.SCHEDULE_SAVE;
-import static com.codejam.demo.constants.MessageConstants.SCHEDULE_UPDATE;
-import static com.codejam.demo.utils.ResponseBuilder.success;
-import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(path = "demo")
 public class ScheduleController {
 
+    private final ScheduleService service;
+    private final String[] sortable = {"id", "venue"};
     @Autowired
     private ScheduleRepository scheduleRepository;
 
@@ -40,6 +24,19 @@ public class ScheduleController {
     public List<Schedule> getAllSchedule() {
         return scheduleRepository.findAll();
     }
+
+//    @GetMapping("/schedule/all")
+//    public ResponseEntity<JSONObject> findAll(
+//            @RequestParam(value = "sortBy", defaultValue = "") String sortBy) {
+//        Map<String, Object> filterMap = new HashMap<>();
+//
+//        List<ScheduleDto> responses = service.findAll(sortable, sortBy, filterMap)
+//                .stream()
+//                .map(ScheduleDto::from)
+//                .collect(Collectors.toList());
+//
+//        return ok(success(responses).getJson());
+//    }
 
     @GetMapping("/schedule/{id}")
     public Optional<Schedule> getSchedule(@PathVariable("id") Integer id) {
